@@ -152,6 +152,11 @@ and modify its content.
 client.get("/order/cart", description="merryChristmas")
 ```
 
+### Configurations
+
+You will be able to setup some configurations on your domain name during the order process.
+Please take a look at [this guide](docs/configuration.en.md) for more informations.
+
 ### Let's checkout
 
 This step generates an ovh salesorder ready to bill.
