@@ -159,7 +159,7 @@ Please take a look at [this guide](docs/configuration.en.md) for more informatio
 
 ### Let's checkout
 
-This step generates an ovh salesorder ready to bill.
+This step generates an ovh sales-order ready to bill.
 As a developer, you might be interest to run this as a dry run, to check if everything is fine.
 
 ``` python
@@ -172,7 +172,27 @@ And finally,
 salesorder = client.post("/order/cart/{0}/checkout".format(cart.get("cartId")))
 ```
 
-a salesorder URL will be displayed to continue your billing process.
+A sales-order URL will be displayed to continue your billing process.
+
+### Automatisation of payment procedure
+
+Once your cart has been checked out, you will be able to automate the payment of your sales-order.
+This procedure requires that you had enough funds on your prepaid account (OVH account or fidelity account).
+
+``` python
+order = client.get("/me/order/{0}/availableRegisteredPaymentMean".format(salesorder.get("orderId")))
+```
+
+This API call will give you a list of the different payment means available for you to pay this order.
+`null` value indicates that the order can't be paid with that payment mean.
+
+Finally,
+``` python
+order = client.post("/me/order/{0}/payWithRegisteredPaymentMean".format(salesorder.get("orderId")))
+```
+payWithRegisteredPaymentMean enables you to validate your order with payment from a prepaid account.
+The delivery of your order will start to be processed by our robots.
+
 
 ## Quick samples
 

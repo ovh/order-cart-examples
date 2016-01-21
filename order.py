@@ -52,7 +52,7 @@ try:
         add_to_cart = raw_input("Do you want to add it to your cart ? (Y/N) ")
         if add_to_cart in ("Y", "y", "yes"):
             try:
-                client.post("/order/cart/{}/domain"
+                client.post("/order/cart/{0}/domain"
                             .format(cart.get("cartId")),
                             domain=domain,
                             offerId=offer["offerId"])
@@ -61,7 +61,7 @@ try:
 
     # generate a salesorder
     try:
-        salesorder = client.post("/order/cart/{}/checkout"
+        salesorder = client.post("/order/cart/{0}/checkout"
                                  .format(cart.get("cartId")))
         print(u"Order #{0} ({1}) has been generated : {2}"
               .format(salesorder["orderId"],
@@ -69,5 +69,39 @@ try:
                       salesorder.get("url")))
     except ovh.exceptions.APIError as e:
         print("Unable to generate the order: " + str(e))
+        exit(1)
+
+    paid_with_prepaid = raw_input("Do you want to pay this order with prepaid account ? (Y/N) ")
+    if not paid_with_prepaid in ("Y", "y", "yes"):
+        exit(0)
+
+    # retrieve available payment means
+    try:
+        order_payment_means = client.get("/me/order/{0}/availableRegisteredPaymentMean"
+                                 .format(salesorder.get("orderId")))
+    except ovh.exceptions.APIError as e:
+        print("Unable to retrieve order payment means: " + str(e))
+        exit(1)
+
+    if not order_payment_means:
+        print(u"Not registered payment means available. Can't pay this order automatically")
+        exit(1)
+
+    print("Here are the different payment means available:")
+    for index in range(0, len(prepaid_payment_means)):
+        print(u"[{0}] {1}"
+              .format(index, prepaid_payment_means[index]))
+    index = int(raw_input("Please select the payment means you want to pay your order with:"))
+    while index >= len(prepaid_payment_means):
+        print(u"Invalid payment means provided, please select one of above")
+        index = int(raw_input("Please select the payment means you want to pay your order with:"))
+
+
+    try:
+        client.post("/me/order/{0}/payWithRegisteredPaymentMean".format(salesorder.get("orderId")), paymentMean=prepaid_payment_means[index])
+    except ovh.exceptions.APIError as e:
+        print("Payment of your order haven't been succesful: " + str(e))
+        exit(1)
+
 except ovh.exceptions.APIError as e:
     print(e)
