@@ -23,8 +23,8 @@ edit ovh.conf
 ./ovh-cli
 ```
 
-<img alt="php-cli" width="700"
-     src="img/php-cli.gif" />
+<img alt="php-cli" width="400"
+     src="../img/php-cli.gif" />
 
 should be enough, when rights are correct.
 
