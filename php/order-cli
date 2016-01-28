@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+/**
+ * @category Ovh
+ * @package Ovh
+ * @author ApiOrder Team <api@ml.ovh.net>
+ * @license https://github.com/ovh/order-cart-examples/blob/master/LICENSE
+ *
+ * Feel free to use and reuse this source code
+ * Sources code samples are deliberatly not trully defensive, to keep clean syntax
+ */
+
+if (is_file(dirname(__FILE__).'order.php') === true) {
+    include_once dirname(__FILE__).'./order.php';
+} else {
+    include_once './order.php';
+}
+use Ovh\Order;
+
+Order::handleArguments($argv);
+Order::main();

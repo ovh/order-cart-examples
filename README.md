@@ -7,6 +7,7 @@ New [Order API](https://api.ovh.com/console/#/order/cart#POST), sample dedicated
 * Realtime update of prices and promotions
 * Versioned releases, ensure backward compatibility
 * Configuration management
+* Python, PHP samples
 
 # Order creation flow
 

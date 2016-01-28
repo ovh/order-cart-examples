@@ -46,7 +46,7 @@ try:
             if price["label"] == "TOTAL":
                 total_price = price["price"]["text"]
                 break
-        print(u"Offer selected: {0} (phase : {1}) - {2}"
+        print(u"Offer selected: {0} (phase : {1}) => {2}"
               .format(domain, infos[index]["phase"], total_price))
 
         add_to_cart = raw_input("Do you want to add it to your cart ? (Y/N) ")

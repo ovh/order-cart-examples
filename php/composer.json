@@ -1,0 +1,11 @@
+{
+    "name": "Order-php cli",
+    "description": "This is a skeleton of script using OVH APIs",
+    "require": {
+        "ovh/ovh": "v2.0.0"
+    },
+    "require-dev": {
+        "phpmd/phpmd" : "@stable",
+        "squizlabs/php_codesniffer": "2.*"
+    }
+}
