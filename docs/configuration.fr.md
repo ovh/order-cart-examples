@@ -13,7 +13,7 @@ Un article de panier est représenté par la route HTTP suivante : `GET /order/c
 On peut ainsi accéder à toutes les configurations déjà enregistrées pour un article via la route HTTP : `GET /order/cart/{cartId}/item/{itemId}/configuration`.  
 Par défaut, aucune configuration n'est présente dans un article de panier.
 
-Une configuration est un ensemble de deux éléments: le libellé de la configuration, ainsi qu'une valeur. Le libellé permet de déterminer le contexte à associer à la valeur de la configuration (par exemple: `DNS` pour une entrée DNS, `OWNER_CONTACT` pour une configuration de contact propriétaire, `ACCEPT_CONDITIONS` pour une configuration de validation de conditions particulières pour un domaine).
+Une configuration est un ensemble de deux éléments: le libellé de la configuration, ainsi qu'une valeur. Le libellé permet de déterminer le contexte à associer à la valeur de la configuration (par exemple: `DNS` pour une entrée DNS, `OWNER_CONTACT` pour une configuration de contact propriétaire, `TECH_ACCOUNT` pour une configuration de compte technique du service, `ADMIN_ACCOUNT` pour une configuration de compte administrateur du service, `ACCEPT_CONDITIONS` pour une configuration de validation de conditions particulières pour un domaine).
 
 Pour connaître la liste des configurations recommandées ou nécessaires pour un article de panier, il est nécessaire de faire un appel à la ressource suivante : `GET /order/cart/{cartId}/item/{itemId}/requiredConfiguration`.  
 Cet appel renverra alors une liste des différentes configurations possibles, avec les informations suivantes:
@@ -39,11 +39,12 @@ Une fois la configuration envoyée au serveur, vous recevrez un identifiant corr
 
 Il peut exister différents types pour les configurations : plusieurs types primaires, ainsi que des types étendus.
 
-Les trois types primaires que nous distinguons sont:
+Les quatres types primaires que nous distinguons sont:
 
 - Boolean
 - Integer
 - String
+- Nichandle
 
 ---
 #### Boolean
@@ -70,6 +71,14 @@ Représente une valeur numérique non décimale.
 Représente une valeur chaîne de caractères.
 
 **Valeurs acceptés pour ce type :** Toutes chaînes de caractères sans distinction.
+
+---
+
+#### Nichandle
+
+Représente un identifiant de compte client OVH.
+
+**Valeurs acceptés pour ce type :** Un identifiant client OVH valide.
 
 ---
 

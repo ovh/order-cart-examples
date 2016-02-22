@@ -13,7 +13,7 @@ A cart item can be retrieved at this address : `GET /order/cart/{cartId}/item/{i
 We can also access to the configuration IDs of the cart item through : `GET /order/cart/{cartId}/item/{itemId}/configuration`.  
 By default, no configuration is attached to the cart item when it has just been put in the shopping cart.
 
-A configuration is a set by two elements: the label configuration and its value. The label identifies the context on which the value will be applied (for example, `DNS` label for a DNS entry, `OWNER_CONTACT` label in order to configure an owner contact, `ACCEPT_CONDITIONS` label in order to validate special conditions for a domain name registration).
+A configuration is a set by two elements: the label configuration and its value. The label identifies the context on which the value will be applied (for example, `DNS` label for a DNS entry, `OWNER_CONTACT` label in order to configure an owner contact, `ADMIN_ACCOUNT` label in order to configure the administrator account for the service, `TECH_ACCOUNT` label in order to configure the technical account for the service, `ACCEPT_CONDITIONS` label in order to validate special conditions for a domain name registration).
 
 To get the list of all cart items valid configurations (including mandatories ones), call : `GET /order/cart/{cartId}/item/{itemId}/requiredConfiguration`.  
 This call will return a list of the possible configurations, with the following information:
@@ -37,13 +37,14 @@ Once the configuration has been posted, an identifier associated to this configu
 
 ## Types
 
-Several configuration types exist : 3 basics types and complex types.
+Several configuration types exist : 4 basics types and complex types.
 
-The first three types are:
+The first four types are:
 
 - Boolean
 - Integer
 - String
+- Nichandle
 
 ---
 #### Boolean
@@ -68,6 +69,13 @@ Represents a non decimal numerical value.
 Represents a string value.
 
 **Values accepted for this type :** all strings.
+
+---
+#### Nichandle
+
+Represents an OVH account identifiant.
+
+**Values accepted for this type :** all valid OVH account identifiant.
 
 ---
 #### Complex types
