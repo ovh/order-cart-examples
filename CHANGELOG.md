@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 0.4.0 (2016-02-22)
+ - [feature] Add documentation about TECH_ACCOUNT and ADMIN_ACCOUNT
+ - [feature] Add documentation about Nichandle type configurations
+ - [fix] Errors in configuration workflow image
+
 ## 0.3.1 (2016-01-28)
  - [feature] Cli in PHP and related functions
  - [feature] Simple Apiv6 parser
